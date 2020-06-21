@@ -1,4 +1,4 @@
-import { DocumentNode, parse, print } from 'graphql';
+import { DocumentNode, parse } from 'graphql';
 import { hash, phash } from './hash';
 import { stringifyVariables } from './stringifyVariables';
 import { GraphQLRequest, Operation, OperationContext } from '../types';
@@ -25,7 +25,7 @@ export const createRequest = (
     key = (q as any)[keyProp];
     query = q;
   } else {
-    key = hashQuery(print(q));
+    key = hashQuery(stringifyVariables(q));
     query = docs[key] !== undefined ? docs[key] : q;
   }
 
