@@ -25,7 +25,7 @@ export const createRequest = (
     key = (q as any)[keyProp];
     query = q;
   } else {
-    key = hashQuery(print(q));
+    key = hashQuery(stringifyVariables(q));
     query = docs[key] !== undefined ? docs[key] : q;
   }
 
